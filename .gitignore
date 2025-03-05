@@ -1,0 +1,63 @@
+# ビルドファイル
+build/
+.gradle/
+/local.properties
+/.idea/caches/
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+*.iml
+*.apk
+*.apks
+*.class
+*.dex
+*.jar
+*.hprof
+*.orig
+*.pyc
+*.swp
+*.zip
+.externalNativeBuild
+/captures
+.cxx/
+/compose-metadata/
+/debug/
+/release/
+/outputs/
+/build-cache/
+/generated/
+/lint-results/
+/reports/
+/test-results/
+/jacoco/
+/coverage/
+
+# Android Studio 固有のファイル
+.gradle
+/build/
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Gradle 固有のファイル
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/aidl/
+!**/src/main/jniLibs/
+!**/src/main/shaders/
+!**/src/androidTest/aidl/
+!**/src/test/aidl/
+
+# ローカル設定ファイル
+local.properties
+
+# OS 固有のファイル
+.DS_Store
+Thumbs.db
+
+# その他
+*.log
+*.bak
