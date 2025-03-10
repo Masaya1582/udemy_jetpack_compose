@@ -20,7 +20,7 @@ fun main() {
     val age: Int
     
     // 初期化
-    name = "Beast"
+    name = "Beast"v
     age = 24
     print("Hello my name is $name I'm $age years old.")
 }
@@ -56,5 +56,24 @@ fun main() {
     val e = 2.7182818284
     val eFloat = 2.7182818284f
     print("e is $e eFloat is $eFloat")
+}
+```
+
+## Loops and Branching
+
+``` Kotlin
+While x < 10 repeat...
+```
+
+## 関数
+
+``` Kotlin
+fun main() {
+    val amount = 900
+    if (amount >= 1000) {
+        print("You are wealthy")
+    } else {
+        print("You are getting by")
+    }
 }
 ```
