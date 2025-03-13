@@ -117,7 +117,7 @@ fun BillForm(
         mutableStateOf(value = 1)
     }
     val range = IntRange(start = 1, endInclusive = 100)
-    val tipPercentage = (sliderPositionState.value * 100).toInt()
+    val tipPercentage = (sliderPositionState.value).toInt()
     val tipAmountState = remember {
         mutableStateOf(value = 0.0)
     }
@@ -168,6 +168,12 @@ fun BillForm(
                             splitByState.value =
                                 if (splitByState.value > 1) splitByState.value - 1
                                 else 1
+                            totalPerPersonState.value =
+                                calculateTotalPerPerson(
+                                    totalBill = totalBillState.value.toDouble(),
+                                    splitBy = splitByState.value,
+                                    tipPercentage = tipPercentage
+                                )
                         }
                     )
                     Text(
@@ -182,6 +188,12 @@ fun BillForm(
                             if (splitByState.value < range.last) {
                                 splitByState.value = splitByState.value + 1
                             }
+                            totalPerPersonState.value =
+                                calculateTotalPerPerson(
+                                    totalBill = totalBillState.value.toDouble(),
+                                    splitBy = splitByState.value,
+                                    tipPercentage = tipPercentage
+                                )
                         }
                     )
                 }
@@ -205,7 +217,11 @@ fun BillForm(
             ) {
                 Text(text = "$tipPercentage %")
                 Spacer(modifier = Modifier.height(14.dp))
-                Slider(value = sliderPositionState.value, onValueChange = { newVal ->
+                Slider(
+                    value = sliderPositionState.value,
+                    valueRange = 0f..100f,
+                    enabled = totalBillState.value.isNotEmpty(),
+                    onValueChange = { newVal ->
                     sliderPositionState.value = newVal
                     tipAmountState.value = calculateTotalTip(
                         totalBill = totalBillState.value.toDouble(),
@@ -219,10 +235,6 @@ fun BillForm(
                         )
                 },
                     modifier = Modifier.padding(start = 16.dp, end = 16.dp),
-                    steps = 5,
-                    onValueChangeFinished = {
-                        Log.d("Finished", "BillForm: ${sliderPositionState.value}")
-                    }
                 )
             }
         }
