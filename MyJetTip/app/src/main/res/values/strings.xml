@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">jettipapp</string>
+    <string name="total_per_person">Total Per Person</string>
 </resources>
