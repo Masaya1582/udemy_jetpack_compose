@@ -47,7 +47,22 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyApp {
-                BillForm()
+                val splitByState = remember {
+                    mutableStateOf(value = 1)
+                }
+                val range = IntRange(start = 1, endInclusive = 100)
+                val tipAmountState = remember {
+                    mutableStateOf(value = 0.0)
+                }
+                val totalPerPersonState = remember {
+                    mutableStateOf(value = 0.0)
+                }
+                BillForm(
+                    range = range,
+                    splitByState = splitByState,
+                    tipAmountState = tipAmountState,
+                    totalPerPersonState = totalPerPersonState
+                )
             }
         }
     }
@@ -93,7 +108,13 @@ fun TopHeader(totalPerPerson: Double = 0.0) {
 }
 
 @Composable
-fun BillForm(onValChange: (String) -> Unit = {}) {
+fun BillForm(
+    onValChange: (String) -> Unit = {},
+    range: IntRange = 1..100,
+    splitByState: MutableState<Int>,
+    tipAmountState: MutableState<Double>,
+    totalPerPersonState: MutableState<Double>
+) {
     val totalBillState = remember {
         mutableStateOf(value = "")
     }
@@ -104,17 +125,7 @@ fun BillForm(onValChange: (String) -> Unit = {}) {
     val sliderPositionState = remember {
         mutableStateOf(value = 0f)
     }
-    val splitByState = remember {
-        mutableStateOf(value = 1)
-    }
-    val range = IntRange(start = 1, endInclusive = 100)
     val tipPercentage = (sliderPositionState.value).toInt()
-    val tipAmountState = remember {
-        mutableStateOf(value = 0.0)
-    }
-    val totalPerPersonState = remember {
-        mutableStateOf(value = 0.0)
-    }
 
     Surface(
         modifier = Modifier
