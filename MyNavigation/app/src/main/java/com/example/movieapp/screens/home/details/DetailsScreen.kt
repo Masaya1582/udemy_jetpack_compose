@@ -16,6 +16,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,7 +36,7 @@ fun DetailsScreen(navController: NavController, movieData: String?) {
 				},
 				navigationIcon = {
 					IconButton(onClick = { navController.popBackStack() }) {
-						androidx.compose.material3.Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Arrow Back")
+						Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Arrow Back")
 					}
 				}
 			)
