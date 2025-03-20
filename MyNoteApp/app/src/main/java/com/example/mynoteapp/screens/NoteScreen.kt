@@ -12,6 +12,10 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -19,11 +23,18 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.mynoteapp.R
+import com.example.mynoteapp.components.NoteButton
 import com.example.mynoteapp.components.NoteInputTextField
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NoteScreen() {
+	var title by remember {
+		mutableStateOf("")
+	}
+	var description by remember {
+		mutableStateOf("")
+	}
 	Column(
 		modifier = Modifier.padding(6.dp)
 	) {
@@ -48,9 +59,36 @@ fun NoteScreen() {
 			horizontalAlignment = Alignment.CenterHorizontally
 		) {
 			NoteInputTextField(
-				text = "Hello",
-				label = "Hello",
-				onTextChange = {}
+				modifier = Modifier.padding(
+					top = 8.dp,
+					bottom = 8.dp
+				),
+				text = title,
+				label = "Title",
+				onTextChange = {
+					if (it.all { char ->
+						char.isLetter() || char.isWhitespace()
+						}) title = it
+				}
+			)
+			NoteInputTextField(
+				modifier = Modifier.padding(
+					top = 8.dp,
+					bottom = 8.dp
+				),
+				text = description,
+				label = "Add a note",
+				onTextChange = {
+					if (it.all { char ->
+							char.isLetter() || char.isWhitespace()
+						}) description = it
+				}
+			)
+			NoteButton(
+				text = "Save",
+				onClick = {
+					// TODO: - Save Note Action
+				}
 			)
 		}
 	}
