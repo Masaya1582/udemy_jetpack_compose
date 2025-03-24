@@ -77,3 +77,33 @@ fun main() {
     }
 }
 ```
+
+## Dependency Injection
+```
+fun main() {
+    val engine = Engine()
+    val turbo = TurboEngine()
+    val car = Car(engine, turbo)
+    car.engine.start()
+    car.turbo.start()
+}
+
+class Engine() {
+    fun start() {
+        println("Engine X Started...")
+    }
+}
+
+class TurboEngine() {
+    fun start() {
+        println("Turbo Engine X")
+    }
+}
+
+class Car(val engine: Engine, val turbo: TurboEngine) {
+    // val engine = Engine() // BAD Case
+    fun startCar() {
+        println("Starting Car...${engine.start()}")
+    }
+}
+```
