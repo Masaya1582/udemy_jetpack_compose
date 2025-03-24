@@ -9,6 +9,7 @@ class NoteViewModel: ViewModel() {
 	private var noteList = mutableStateListOf<Note>()
 
 	init {
+		// 初期表示用のダミーデータ取得
 		noteList.addAll(NoteDataSource.loadNotes())
 	}
 

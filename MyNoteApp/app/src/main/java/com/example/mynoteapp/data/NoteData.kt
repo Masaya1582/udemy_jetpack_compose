@@ -6,18 +6,16 @@ class NoteDataSource {
 	companion object {
 		fun loadNotes(): List<Note> {
 			return listOf(
-				Note(title = "A good day", description = "We went on a vacation yesterday"),
-				Note(title = "Grocery List", description = "Milk, eggs, bread, cheese"),
-				Note(title = "Meeting Notes", description = "Discussed project timelines and deliverables"),
-				Note(title = "Ideas for App", description = "Implement user authentication and data storage"),
-				Note(title = "Book Recommendations", description = "The Hitchhiker's Guide to the Galaxy, 1984"),
-				Note(title = "Workout Routine", description = "3 sets of 10 push-ups, 3 sets of 12 squats"),
-				Note(title = "Recipe: Chocolate Cake", description = "Ingredients: flour, sugar, cocoa powder, eggs..."),
-				Note(title = "Travel Plans", description = "Book flights to Tokyo for next month"),
-				Note(title = "Coding Tips", description = "Remember to use proper variable naming conventions"),
-				Note(title = "Daily Journal", description = "Today I learned about state hoisting in Jetpack Compose"),
-				Note(title = "Project Brainstorm", description = "New UI designs and feature ideas."),
-				Note(title = "Reminder: Doctor's Appointment", description = "Checkup at 3 PM on Friday.")
+				Note(title = "近所のカフェ", description = "新しいカフェのコーヒーが美味しかった。次はケーキも試したい。"),
+				Note(title = "週末の予定", description = "土曜日は友達と映画、日曜日は公園でピクニック。"),
+				Note(title = "読書リスト", description = "村上春樹の新刊、東野圭吾のミステリー、湊かなえの小説。"),
+				Note(title = "今日の出来事", description = "電車で面白い人に遭遇。帰り道に綺麗な夕焼けを見た。"),
+				Note(title = "欲しいもの", description = "新しいリュックサック、ワイヤレスイヤホン、デザインが良いマグカップ。"),
+				Note(title = "旅行の計画", description = "来月は京都へ旅行。おすすめの観光スポットを調べよう。"),
+				Note(title = "仕事のメモ", description = "会議の資料作成、プレゼンの練習、顧客へのメール送信。"),
+				Note(title = "健康管理", description = "毎日30分のウォーキング、バランスの取れた食事、十分な睡眠。"),
+				Note(title = "趣味の時間", description = "ギターの練習、新しい料理に挑戦、絵を描く。"),
+				Note(title = "アイデアメモ", description = "アプリの新機能、ブログの記事テーマ、週末に作りたい料理のレシピ。")
 			)
 		}
 	}

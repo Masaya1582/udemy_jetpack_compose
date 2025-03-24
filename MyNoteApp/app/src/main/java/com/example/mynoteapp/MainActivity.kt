@@ -44,9 +44,11 @@ private fun NotesApp(
 	val notesList = noteViewModel.getAllNotes()
 	NoteScreen(
 		notes = notesList,
+		// 追加処理
 		onAddNote = {
 			noteViewModel.addNote(it)
 		},
+		// 削除処理
 		onRemoveNote = {
 			noteViewModel.removeNote(it)
 		}

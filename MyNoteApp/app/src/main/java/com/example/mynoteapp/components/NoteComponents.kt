@@ -53,7 +53,7 @@ fun NoteInputTextField(
 }
 
 @Composable
-fun NoteButton(
+fun SaveNoteButton(
 	modifier: Modifier = Modifier,
 	text: String,
 	onClick: () -> Unit,
