@@ -61,9 +61,16 @@ dependencies {
 	implementation(libs.androidx.ui.graphics)
 	implementation(libs.androidx.ui.tooling.preview)
 	implementation(libs.androidx.material3)
+	// Hilt
 	implementation(libs.androidx.lifecycle.viewmodel.compose)
 	implementation(libs.hilt.android)
 	kapt(libs.hilt.android.compiler)
+	// Room
+	val room_version = "2.6.1"
+	implementation(libs.androidx.room.runtime)
+	annotationProcessor(libs.androidx.room.compiler)
+	// Coroutines
+	implementation(libs.kotlinx.coroutines.android)
 	testImplementation(libs.junit)
 	androidTestImplementation(libs.androidx.junit)
 	androidTestImplementation(libs.androidx.espresso.core)
