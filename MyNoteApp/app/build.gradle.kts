@@ -66,9 +66,10 @@ dependencies {
 	implementation(libs.hilt.android)
 	kapt(libs.hilt.android.compiler)
 	// Room
-	val room_version = "2.6.1"
 	implementation(libs.androidx.room.runtime)
 	annotationProcessor(libs.androidx.room.compiler)
+	kapt(libs.androidx.room.compiler)
+	implementation("androidx.room:room-ktx:2.2.1")
 	// Coroutines
 	implementation(libs.kotlinx.coroutines.android)
 	testImplementation(libs.junit)
