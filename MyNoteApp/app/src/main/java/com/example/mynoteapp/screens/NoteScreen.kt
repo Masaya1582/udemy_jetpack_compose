@@ -37,6 +37,7 @@ import com.example.mynoteapp.components.NoteButton
 import com.example.mynoteapp.components.NoteInputTextField
 import com.example.mynoteapp.data.NoteDataSource
 import com.example.mynoteapp.model.Note
+import com.example.mynoteapp.util.formatDate
 import java.time.format.DateTimeFormatter
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -156,10 +157,10 @@ fun NoteRow(
 				text = note.description,
 				style = MaterialTheme.typography.bodySmall
 			)
-//			Text(
-//				text = note.entryDate.format(DateTimeFormatter.ofPattern("EEE, d MMM")),
-//				style = MaterialTheme.typography.bodySmall
-//			)
+			Text(
+				text = formatDate(note.entryDate.time),
+				style = MaterialTheme.typography.bodySmall
+			)
 		}
 	}
 }
