@@ -8,10 +8,18 @@ import kotlinx.coroutines.flow.conflate
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
-class NoteRepository @Inject constructor(private val noteDatabaseDao: NoteDatabaseDao) {
-	suspend fun addNote(note: Note) = noteDatabaseDao.insert(note = note)
-	suspend fun updateNote(note: Note) = noteDatabaseDao.update(note)
-	suspend fun deleteNote(note: Note) = noteDatabaseDao.deleteNote(note)
-	suspend fun deleteAllNotes(note: Note) = noteDatabaseDao.deleteAll()
-	fun getAllNotes(): Flow<List<Note>> = noteDatabaseDao.getNotes().flowOn(Dispatchers.IO).conflate()
+interface NoteRepositoryInterface {
+	suspend fun addNote(note: Note)
+	suspend fun updateNote(note: Note)
+	suspend fun deleteNote(note: Note)
+	suspend fun deleteAllNotes()
+	fun getAllNotes(): Flow<List<Note>>
+}
+
+class NoteRepository @Inject constructor(private val noteDatabaseDao: NoteDatabaseDao): NoteRepositoryInterface {
+	override suspend fun addNote(note: Note) = noteDatabaseDao.insert(note = note)
+	override suspend fun updateNote(note: Note) = noteDatabaseDao.update(note)
+	override suspend fun deleteNote(note: Note) = noteDatabaseDao.deleteNote(note)
+	override suspend fun deleteAllNotes() = noteDatabaseDao.deleteAll()
+	override fun getAllNotes(): Flow<List<Note>> = noteDatabaseDao.getNotes().flowOn(Dispatchers.IO).conflate()
 }
