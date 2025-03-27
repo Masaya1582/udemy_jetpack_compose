@@ -112,107 +112,12 @@ private fun ImageGrid(images: List<ImageItem>) {
 	}
 }
 
+@Preview(showBackground = true)
 @Composable
-private fun TrendingView(imageList: List<Int>) {
-	Column {
-		Row(
-			modifier = Modifier.padding(8.dp)
-		) {
-			Icon(
-				modifier = Modifier
-					.width(24.dp)
-					.height(24.dp),
-				imageVector = Icons.Default.Favorite, contentDescription = "HeadPhone Image"
-			)
-			Spacer(modifier = Modifier.padding(4.dp))
-			Text(
-				text = "Trending Now"
-			)
-		}
-		imageList.chunked(2).forEach { rowImages -> // 'rowImages' is now List<Int>
-			Row(
-				modifier = Modifier
-					.fillMaxWidth()
-					.padding(vertical = 8.dp),
-				horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
-			) {
-				rowImages.forEach { imageId -> // 'imageId' is now Int
-					Image(
-						painter = painterResource(id = imageId), // Correct usage
-						contentDescription = "Coffee",
-						modifier = Modifier
-							.width(160.dp)
-							.height(160.dp)
-							.clip(RoundedCornerShape(12.dp)),
-						contentScale = ContentScale.Crop
-					)
-				}
-				if (rowImages.size == 1) {
-					Spacer(modifier = Modifier.weight(1f))
-				}
-			}
-		}
+fun GreetingPreview() {
+	MyPodcastTheme {
+		val viewModel = ImageViewModel()
+		val images by viewModel.images.collectAsState()
+		ImageGrid(images = images)
 	}
 }
-
-@Composable
-private fun FeaturedView(imageList: List<Int>) {
-	Row(
-		modifier = Modifier.padding(8.dp)
-	) {
-		Icon(
-			modifier = Modifier
-				.width(24.dp)
-				.height(24.dp),
-			imageVector = Icons.Default.Home, contentDescription = "HeadPhone Image"
-		)
-		Spacer(modifier = Modifier.padding(4.dp))
-		Text(
-			text = "Featured Podcasts"
-		)
-	}
-	Row(
-		modifier = Modifier
-			.fillMaxWidth()
-			.padding(8.dp)
-			.horizontalScroll(rememberScrollState()),
-		horizontalArrangement = Arrangement.spacedBy(8.dp)
-	) {
-		imageList.forEach { imageId ->
-			Image(
-				painterResource(id = imageId), contentDescription = "Coffee",
-				modifier = Modifier
-					.width(160.dp)
-					.height(160.dp)
-					.clip(RoundedCornerShape(12.dp)),
-				contentScale = ContentScale.FillBounds
-			)
-		}
-	}
-}
-
-@Composable
-private fun HeaderView() {
-	Row(
-		modifier = Modifier.padding(8.dp)
-	) {
-		Icon(
-			modifier = Modifier
-				.width(24.dp)
-				.height(24.dp),
-			imageVector = Icons.Default.Phone, contentDescription = "HeadPhone Image"
-		)
-		Spacer(modifier = Modifier.padding(4.dp))
-		Text(
-			text = "Podcasts"
-		)
-	}
-}
-
-//@Preview(showBackground = true)
-//@Composable
-//fun GreetingPreview() {
-//	MyPodcastTheme {
-//		ImageGrid()
-//	}
-//}
