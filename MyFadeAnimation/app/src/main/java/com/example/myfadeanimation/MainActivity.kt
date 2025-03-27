@@ -120,6 +120,9 @@ private fun ModalView(onDismiss: () -> Unit) {
 @Composable
 fun GreetingPreview() {
 	MyFadeAnimationTheme {
-		MyFadeView()
+		var isShowFadeAnimationModal by remember { mutableStateOf(false) }
+		ModalView {
+			isShowFadeAnimationModal = false
+		}
 	}
 }
