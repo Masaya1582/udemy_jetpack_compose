@@ -16,7 +16,7 @@ class UserViewModel : ViewModel() {
 		fetchUsers()
 	}
 
-	private fun fetchUsers() {
+	fun fetchUsers() {
 		isLoading.value = true
 		viewModelScope.launch {
 			try {

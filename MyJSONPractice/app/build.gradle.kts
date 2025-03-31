@@ -65,6 +65,7 @@ dependencies {
 	implementation(libs.kotlinx.serialization.json) // Or the latest version
 	implementation(libs.converter.moshi) // Or the latest version
 	implementation(libs.moshi.kotlin) // Or the latest version
+	implementation("io.coil-kt:coil-compose:2.5.0")
 	kapt("com.squareup.moshi:moshi-kotlin-codegen:1.15.0") // For Moshi code generation
 	implementation(libs.converter.gson) // Or the latest version
 	implementation(libs.kotlinx.serialization.json) // Use latest version
