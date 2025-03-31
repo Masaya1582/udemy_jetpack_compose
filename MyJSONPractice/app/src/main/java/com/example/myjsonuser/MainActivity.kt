@@ -138,7 +138,7 @@ private fun UserItem(user: ResultsItem, viewModel: UserViewModel) {
 				.padding(8.dp)
 				.size(200.dp)
 				.clip(CircleShape)
-				.align(Alignment.CenterHorizontally) // AsyncImage だけ Center
+				.align(Alignment.CenterHorizontally)
 		)
 		Text("Name: ${user.name.first} ${user.name.last}")
 		Text("Email: ${user.email}")
@@ -148,7 +148,9 @@ private fun UserItem(user: ResultsItem, viewModel: UserViewModel) {
 			modifier = Modifier
 				.padding(top = 12.dp)
 				.align(Alignment.CenterHorizontally),
-			onClick = { viewModel.fetchUsers() }
+			onClick = {
+				viewModel.fetchUsers()
+			}
 		) {
 			Text("Fetch Another User Info")
 		}
