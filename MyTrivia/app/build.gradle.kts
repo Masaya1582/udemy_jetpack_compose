@@ -70,16 +70,13 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
 
-    //Dagger - Hilt
-    implementation("com.google.dagger:hilt-android:2.48")
-    kapt("com.google.dagger:hilt-android-compiler:2.48")
-    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
-    implementation("androidx.hilt:hilt-android:1.1.0")
-    kapt("androidx.hilt:hilt-compiler:1.1.0")
+    // Dagger - Hilt
+    implementation("com.google.dagger:hilt-android:2.51.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
 
-    //Retrofit
+    // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    //GSON converter
+    // GSON converter
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
