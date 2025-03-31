@@ -34,7 +34,18 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.example.myjsonuser.models.Coordinates
+import com.example.myjsonuser.models.Dob
+import com.example.myjsonuser.models.Id
+import com.example.myjsonuser.models.Location
+import com.example.myjsonuser.models.Login
+import com.example.myjsonuser.models.Name
+import com.example.myjsonuser.models.Picture
+import com.example.myjsonuser.models.Registered
 import com.example.myjsonuser.models.ResultsItem
+import com.example.myjsonuser.models.Street
+import com.example.myjsonuser.models.Timezone
+import com.example.myjsonuser.models.dummyUser
 import com.example.myjsonuser.ui.theme.MyJSONUserTheme
 import com.example.myjsonuser.viewmodels.UserViewModel
 
@@ -144,11 +155,13 @@ private fun UserItem(user: ResultsItem, viewModel: UserViewModel) {
 	}
 }
 
-////@Preview(showBackground = true)
-////@Composable
-////fun GreetingPreview() {
-////	MyJSONUserTheme {
-////		val viewModel = UserViewModel()
-////		UserItem(viewModel = viewModel)
-////	}
-//}
+@Preview(showBackground = true)
+@Composable
+fun UserItemPreview() {
+	val dummyUser = dummyUser
+	val viewModel = UserViewModel()
+
+	MyJSONUserTheme {
+		UserItem(user = dummyUser, viewModel = viewModel)
+	}
+}
