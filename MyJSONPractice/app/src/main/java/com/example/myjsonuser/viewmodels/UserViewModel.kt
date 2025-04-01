@@ -21,7 +21,7 @@ class UserViewModel : ViewModel() {
 		viewModelScope.launch {
 			try {
 				val response = RetrofitClient.apiService.getUsers()
-				users.value = response.results ?: emptyList() // Corrected line
+				users.value = response.results
 				isLoading.value = false
 			} catch (e: Exception) {
 				errorMessage.value = e.message
