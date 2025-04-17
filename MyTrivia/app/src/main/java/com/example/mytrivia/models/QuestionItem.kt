@@ -1,1 +1,0 @@
-package com.example.mytrivia.modelsdata class QuestionItem(    val question: String = "",    val answer: String = "",    val category: String = "",    val choices: List<String>)
