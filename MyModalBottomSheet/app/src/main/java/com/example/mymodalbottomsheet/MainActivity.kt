@@ -91,21 +91,18 @@ fun ModalSheetExample(modifier: Modifier = Modifier) {
 				sheetState = sheetState
 			) {
 				Column(
-					modifier = Modifier.padding()
+					modifier = Modifier
+						.fillMaxWidth()
+						.padding(horizontal = 8.dp)
 				) {
 					Image(
 						painterResource(id = R.drawable.img_android),
 						contentDescription = "Android Image",
 						contentScale = ContentScale.Fit,
-						modifier = Modifier
-							.fillMaxWidth()
-							.padding(horizontal = 8.dp)
 					)
 					Spacer(modifier = Modifier.padding(8.dp))
 					Button(
-						modifier = Modifier
-							.fillMaxWidth()
-							.padding(horizontal = 8.dp),
+						modifier = Modifier.fillMaxWidth(),
 						onClick = {
 							scope.launch { sheetState.hide() }.invokeOnCompletion {
 								if (!sheetState.isVisible) {
