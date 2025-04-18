@@ -20,17 +20,17 @@ class ImageViewModel: ViewModel() {
 		initializeImages()
 	}
 
-	//初期化時
+	// 初期化
 	private fun initializeImages() {
 		updateImages()
 	}
 
-	//PullToRefresh時
+	// Pull Refresh
 	fun refreshImages() {
 		updateImages(isRefreshing = true)
 	}
 
-	//共通処理
+	// 表示画像を更新
 	private fun updateImages(isRefreshing: Boolean = false) {
 		viewModelScope.launch {
 			if (isRefreshing) {
@@ -47,6 +47,7 @@ class ImageViewModel: ViewModel() {
 		}
 	}
 
+	// ランダムな画像を選ぶ
 	@DrawableRes
 	private fun getDrawableResId(index: Int): Int {
 		return when (index) {
