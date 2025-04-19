@@ -73,7 +73,6 @@ dependencies {
     // Dagger - Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
-    implementation(libs.hilt.lifecycle.viewmodel)
     kapt(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
 
