@@ -1,6 +1,7 @@
 package com.example.myjettrivia.components
 
 import android.graphics.Paint.Align
+import android.provider.CalendarContract
 import android.util.Log
 import android.view.animation.AlphaAnimation
 import androidx.compose.animation.core.withInfiniteAnimationFrameNanos
@@ -9,6 +10,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -17,6 +19,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.RadioButton
@@ -38,6 +41,7 @@ import androidx.compose.ui.text.ParagraphStyle
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextIndent
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -69,8 +73,71 @@ fun Questions(viewModel: QuestionsViewModel) {
 				questionIndex = questionIndex,
 				viewModel = viewModel
 			) {
-				questionIndex.value = questionIndex.value + 1
+				questionIndex.value += 1
 			}
+		}
+	}
+}
+
+@Composable
+fun ProgressBar(score: Int) {
+	val gradient = Brush.linearGradient(
+		listOf(
+			Color(0xFFF95075),
+			Color(0xFFBE6BE5),
+		)
+	)
+	val progressFactor = remember(score) {
+		mutableStateOf(score*0.005f)
+	}
+	Row(
+		modifier = Modifier
+			.padding(3.dp)
+			.fillMaxWidth()
+			.height(44.dp)
+			.border(
+				width = 4.dp,
+				brush = Brush.linearGradient(
+					colors = listOf(
+						AppColors.mLightPurple,
+						AppColors.mLightPurple
+					)
+				),
+				shape = RoundedCornerShape(34.dp)
+			)
+			.clip(
+				RoundedCornerShape(
+					topStartPercent = 50,
+					topEndPercent = 50,
+					bottomEndPercent = 50,
+					bottomStartPercent = 50
+				)
+			),
+		verticalAlignment = Alignment.CenterVertically
+	) {
+		Button(
+			contentPadding = PaddingValues(1.dp),
+			onClick = {},
+			modifier = Modifier
+				.fillMaxWidth(progressFactor.value)
+				.background(brush = gradient),
+			enabled = false,
+			elevation = null,
+//			colors = ButtonColors(
+//				backgroundColor = Color.Transparent,
+//				disabledBackgroundColor = Color.Transparent
+//			)
+		) {
+			Text(
+				text = (score*10).toString(),
+				modifier = Modifier
+					.clip(shape = RoundedCornerShape(24.dp))
+					.fillMaxHeight(0.87f)
+					.fillMaxWidth()
+					.padding(6.dp),
+				color = AppColors.mOffWhite,
+				textAlign = TextAlign.Center
+			)
 		}
 	}
 }
@@ -109,14 +176,13 @@ fun QuestionsDisplay(
 			verticalArrangement = Arrangement.Top,
 			horizontalAlignment = Alignment.Start
 		) {
+			if (questionIndex.value >= 3) ProgressBar(score = questionIndex.value)
 			QuestionTracker(
 				counter = questionIndex.value,
-				outOf = listOf(question).size
+				outOf = viewModel.getTotalQuestionCount()
 			)
 			DrawDottedLine(pathEffect = pathEffect)
-			Column(
-
-			) {
+			Column {
 				Text(
 					text = question.question,
 					modifier = Modifier
