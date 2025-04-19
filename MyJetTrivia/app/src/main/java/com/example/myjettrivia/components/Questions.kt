@@ -3,6 +3,7 @@ package com.example.myjettrivia.components
 import android.graphics.Paint.Align
 import android.util.Log
 import android.view.animation.AlphaAnimation
+import androidx.compose.animation.core.withInfiniteAnimationFrameNanos
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -82,8 +83,7 @@ fun QuestionsDisplay(
 	Surface(
 		modifier = Modifier
 			.fillMaxWidth()
-			.fillMaxHeight()
-			.padding(4.dp),
+			.fillMaxHeight(),
 		color = AppColors.mDarkPurple
 	) {
 		Column(
@@ -151,9 +151,22 @@ fun QuestionsDisplay(
 									}
 							)
 						)
-						Text(
-							text = answerText
-						)
+						val annotatedString = buildAnnotatedString {
+							withStyle(
+								style = SpanStyle(
+									fontWeight = FontWeight.Light,
+									color = if (correctAnswerState.value == true && index == answerState.value) {
+										Color.Green
+									} else if (correctAnswerState.value == false && index == answerState.value) {
+										Color.Red
+									} else {  AppColors.mOffWhite },
+									fontSize = 17.sp
+								)
+							) {
+								append(answerText)
+							}
+						}
+						Text(text = annotatedString, modifier = Modifier.padding(6.dp))
 					}
 				}
 			}
