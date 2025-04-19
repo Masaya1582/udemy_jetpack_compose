@@ -21,31 +21,12 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             MyJetTriviaTheme {
                 Surface() {
                     TriviaHome()
                 }
             }
-        }
-    }
-}
-
-@Composable
-private fun TriviaHome(viewModel: QuestionsViewModel = hiltViewModel()) {
-    Questions(viewModel)
-}
-
-@Composable
-private fun Questions(viewModel: QuestionsViewModel) {
-    val questions = viewModel.data.value.data?.toMutableList()
-    if (viewModel.data.value.loading == true) {
-        Log.d("Loading", "Questions Loading...")
-    } else {
-        Log.d("Loading", "Loading Stopped!")
-        questions?.forEach { questionItem ->
-            Log.d("Result", "Questions: ${questionItem.question}")
         }
     }
 }
