@@ -1,0 +1,1 @@
+package com.example.myweatherforecast.navigationsenum class WeatherScreens {    SplashScreen,    MainScreen,    AboutScreen,    FavoriteScreen,    SettingsScreen}
