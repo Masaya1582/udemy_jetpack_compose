@@ -1,5 +1,6 @@
 package com.example.myfirebaseauthentication
 
+import android.content.Context
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -7,6 +8,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -34,6 +36,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -64,7 +67,6 @@ fun FirebaseAuthApp(modifier: Modifier = Modifier) {
 	val navController = rememberNavController()
 	val auth = remember { FirebaseAuth.getInstance() }
 	val context = LocalContext.current
-
 	var isLoggedIn by remember { mutableStateOf(auth.currentUser != null) }
 
 	DisposableEffect(auth) {
@@ -88,28 +90,39 @@ fun FirebaseAuthApp(modifier: Modifier = Modifier) {
 			CenterAlignedTopAppBar(title = { Text("Firebase Auth Demo") })
 		}
 	) { paddingValues ->
-		NavHost(
-			navController = navController,
-			startDestination = if (isLoggedIn) AuthNavRoutes.HOME_SCREEN else AuthNavRoutes.AUTH_SCREEN,
-			modifier = Modifier.padding(paddingValues)
-		) {
-			composable(AuthNavRoutes.AUTH_SCREEN) {
-				AuthScreen(
-					auth = auth,
-					onAuthSuccess = {
-						// 認証成功時の処理はAuthStateListenerでハンドリングされるため、ここでは何もしない
-					}
-				)
-			}
-			composable(AuthNavRoutes.HOME_SCREEN) {
-				HomeScreen(
-					auth = auth,
-					onLogout = {
-						auth.signOut()
-						Toast.makeText(context, "ログアウトしました", Toast.LENGTH_SHORT).show()
-					}
-				)
-			}
+		AuthNavGraph(navController, isLoggedIn, paddingValues, auth, context)
+	}
+}
+
+@Composable
+private fun AuthNavGraph(
+	navController: NavHostController,
+	isLoggedIn: Boolean,
+	paddingValues: PaddingValues,
+	auth: FirebaseAuth,
+	context: Context
+) {
+	NavHost(
+		navController = navController,
+		startDestination = if (isLoggedIn) AuthNavRoutes.HOME_SCREEN else AuthNavRoutes.AUTH_SCREEN,
+		modifier = Modifier.padding(paddingValues)
+	) {
+		composable(AuthNavRoutes.AUTH_SCREEN) {
+			AuthScreen(
+				auth = auth,
+				onAuthSuccess = {
+					// 認証成功時の処理はAuthStateListenerでハンドリングされるため、ここでは何もしない
+				}
+			)
+		}
+		composable(AuthNavRoutes.HOME_SCREEN) {
+			HomeScreen(
+				auth = auth,
+				onLogout = {
+					auth.signOut()
+					Toast.makeText(context, "ログアウトしました", Toast.LENGTH_SHORT).show()
+				}
+			)
 		}
 	}
 }
