@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "85193357728",
+    "project_id": "udemy-android-efecb",
+    "storage_bucket": "udemy-android-efecb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:85193357728:android:1c07330e4b3358bfd08cc5",
+        "android_client_info": {
+          "package_name": "com.example.myfirebaseauthentication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9kRSfbP7j12D65qOzMwdyo9iSJ_VmcV4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
