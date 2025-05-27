@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import androidx.fragment.app.DialogFragment
 
 // DialogFragmentタイプ
@@ -20,6 +21,9 @@ class MyDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val dismissButton: Button = view.findViewById(R.id.dialogDismissButton)
+        val imageView: ImageView = view.findViewById(R.id.imageView)
+
+        imageView.setImageResource(R.drawable.ic_toronto_city)
 
         // ボタンがクリックされたらダイアログを閉じる
         dismissButton.setOnClickListener {
