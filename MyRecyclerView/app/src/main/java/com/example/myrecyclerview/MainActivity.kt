@@ -1,10 +1,12 @@
 package com.example.myrecyclerview
 
 import android.os.Bundle
+import android.widget.GridLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myrecyclerview.data.MyItem
@@ -20,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 			data.add(MyItem("タイトル $i", "サブタイトル $i."))
 		}
 
-		recyclerView.layoutManager = LinearLayoutManager(this)
+		recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
 		recyclerView.adapter = MyAdapter(data)
 	}
 }
