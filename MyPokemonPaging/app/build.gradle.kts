@@ -10,11 +10,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.myweather2026"
+    namespace = "com.example.mypokemonpaging"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.myweather2026"
+        applicationId = "com.example.mypokemonpaging"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
